@@ -1,0 +1,15 @@
+export default NavigationScreenNames = {
+    Login: 'login',
+    SignIn: 'signin',
+    SignUp: 'signUp',
+    Forgot: 'forgot',
+    Home: 'home',
+    Dashboard: 'dashboard',
+    Wallet: 'wallet',
+    Message: 'message',
+    History: 'history',
+    Profile: 'profile',
+    DrawMain: 'drawmain',
+    DrawerOpen: 'draweropen',
+    DrawerClose: 'drawerclose',
+};
