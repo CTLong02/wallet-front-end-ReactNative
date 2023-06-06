@@ -18,7 +18,7 @@ function Home() {
     const navigation = useNavigation();
     const account = useSelector((state) => state.app.account);
     const [moneyWithString, setMoneyWithString] = useState('');
-    console.log('account in home page', account);
+    // console.log('account in home page', account);
     const openSlidebar = () => {
         navigation.dispatch(DrawerActions.openDrawer());
     };
@@ -27,7 +27,7 @@ function Home() {
     }, [account]);
     return (
         <StyledSafeAreaView>
-            <StyledView className="bg-cyan-700 px-4 pt-2 pb-12 rounded-b-3xl">
+            <StyledView className="bg-cyan-800 px-4 pt-2 pb-12 rounded-b-3xl">
                 <StyledView className="flex flex-row justify-between py-2 ">
                     <StyledView>
                         <StyledTouchableWithoutFeedback onPress={openSlidebar}>

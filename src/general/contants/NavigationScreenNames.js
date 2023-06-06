@@ -12,4 +12,5 @@ export default NavigationScreenNames = {
     DrawMain: 'drawmain',
     DrawerOpen: 'draweropen',
     DrawerClose: 'drawerclose',
+    CreateCard: 'createcard',
 };

@@ -7,6 +7,7 @@ import { NavigationContainer, DarkTheme, DefaultTheme } from '@react-navigation/
 import Login from './src/features/signin';
 import NavigationScreenNames from './src/general/contants/NavigationScreenNames';
 import Dashboard from './src/features/home/index';
+import CreateCard from './src/features/home/CreateCard';
 
 const Stack = createStackNavigator();
 function App() {
@@ -33,6 +34,7 @@ function App() {
                                 options={{ headerShown: false }}
                             ></Stack.Screen>
                         </Stack.Group>
+                        <Stack.Screen name={NavigationScreenNames.CreateCard} component={CreateCard}></Stack.Screen>
                     </Stack.Navigator>
                 </NavigationContainer>
             </SafeAreaProvider>

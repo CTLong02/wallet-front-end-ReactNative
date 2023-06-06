@@ -20,7 +20,7 @@ function CustomDrawer() {
         dispatch(signOut());
         navigation.navigate({ name: NavigationScreenNames.Login });
     };
-    console.log(account?.avatar ? `${AppCofig.URL}${account.avatar}` : '');
+    // console.log(account?.avatar ? `${AppCofig.URL}${account.avatar}` : '');
     return (
         <DrawerContentScrollView style={{ margin: 0, padding: 0, position: 'relative', top: -10 }}>
             <StyledScrollView>
