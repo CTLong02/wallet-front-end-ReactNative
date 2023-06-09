@@ -1,17 +1,20 @@
-import { Text, SafeAreaView, View, TextInput, KeyboardAvoidingView, TouchableWithoutFeedback } from 'react-native';
-import { styled, withExpoSnack } from 'nativewind';
-const StyledTouchableWithoutFeedback = styled(TouchableWithoutFeedback);
-const StyledSafeAreaView = styled(SafeAreaView);
-const StyledView = styled(View);
-const StyledText = styled(Text);
-const StyledTextInput = styled(TextInput);
-const StyledKeyboardAvoidingView = styled(KeyboardAvoidingView);
+import {
+    StyledImage,
+    StyledView,
+    StyledText,
+    StyledTouchableWithoutFeedback,
+} from '../../general/components/ComponentsApp';
 function Message() {
     return (
-        <StyledSafeAreaView>
-            <StyledText>MessagePage</StyledText>
-        </StyledSafeAreaView>
+        <StyledView>
+            <StyledView className="flex flex-row px-3 py-4 items-center bg-cyan-800 rounded-b-xl">
+                <StyledTouchableWithoutFeedback>
+                    <StyledImage source={require('../../assets/icon/menu.png')}></StyledImage>
+                </StyledTouchableWithoutFeedback>
+                <StyledText className="flex-grow text-center text-lg text-white font-semibold">Tin nhắn</StyledText>
+            </StyledView>
+        </StyledView>
     );
 }
 
-export default withExpoSnack(Message);
+export default Message;

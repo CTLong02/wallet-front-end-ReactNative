@@ -2,7 +2,6 @@ import { Text, View, Image } from 'react-native';
 import { styled, withExpoSnack } from 'nativewind';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import NavigationScreenNames from '../../general/contants/NavigationScreenNames';
-import Home from './Home';
 import Wallet from './Wallet';
 import Message from './Message';
 import History from './History';

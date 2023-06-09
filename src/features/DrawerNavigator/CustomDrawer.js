@@ -11,14 +11,18 @@ import { signOut } from '../../app/appSlice';
 import { useNavigation } from '@react-navigation/native';
 import NavigationScreenNames from '../../general/contants/NavigationScreenNames';
 import AppCofig from '../../general/contants/AppCofig';
+import AuthApi from '../../api/AuthApi';
 
 function CustomDrawer() {
     const account = useSelector((state) => state.app.account);
     const navigation = useNavigation();
     const dispatch = useDispatch();
-    const handleSignOut = () => {
-        dispatch(signOut());
-        navigation.navigate({ name: NavigationScreenNames.Login });
+    const handleSignOut = async () => {
+        res = await AuthApi.signOut();
+        if (res.result === 'success') {
+            dispatch(signOut());
+            navigation.navigate({ name: NavigationScreenNames.Login });
+        }
     };
     // console.log(account?.avatar ? `${AppCofig.URL}${account.avatar}` : '');
     return (

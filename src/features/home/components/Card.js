@@ -51,7 +51,7 @@ function Card({ bankname, expireDate, numberOfCCard }) {
         setSSDate(expireDate.toString().slice(0, 7).replace('-', '/'));
         setStringNCard('**** **** **** '.concat(numberOfCCard.toString().slice(-5, -1)));
     }, []);
-    console.log(`../../../assets/img/${image}`);
+    // console.log(`../../../assets/img/${image}`);
     return (
         <StyledView className="mt-6">
             <StyledView className="relative">

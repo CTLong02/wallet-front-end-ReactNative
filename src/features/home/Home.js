@@ -13,18 +13,24 @@ import NavigationScreenNames from '../../general/contants/NavigationScreenNames'
 import { handleMoneyToString } from '../../general/utils/handleString';
 import Service from './components/Service';
 import Promotion from './components/Promotion';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 function Home() {
     const navigation = useNavigation();
     const account = useSelector((state) => state.app.account);
     const [moneyWithString, setMoneyWithString] = useState('');
-    // console.log('account in home page', account);
+    console.log('account in home page', account);
     const openSlidebar = () => {
         navigation.dispatch(DrawerActions.openDrawer());
     };
     useEffect(() => {
         setMoneyWithString(handleMoneyToString(account?.remainMoney));
     }, [account]);
+    useEffect(() => {
+        AsyncStorage.getItem('access_Token')
+            .then((value) => console.log(value))
+            .catch((err) => console.log(err));
+    }, []);
     return (
         <StyledSafeAreaView>
             <StyledView className="bg-cyan-800 px-4 pt-2 pb-12 rounded-b-3xl">

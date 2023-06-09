@@ -9,5 +9,9 @@ const AuthApi = {
         const url = 'auth/signUp';
         return AxiosClient.post(url, params);
     },
+    signOut: () => {
+        const url = 'auth/signOut';
+        return AxiosClient.post(url);
+    },
 };
 export default AuthApi;

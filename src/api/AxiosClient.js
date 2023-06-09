@@ -1,6 +1,7 @@
 import queryString from 'query-string';
 import axios from 'axios';
 import AppCofig from '../general/contants/AppCofig';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const sTag = '[AxiosClient]';
 
@@ -52,4 +53,16 @@ AxiosClient.interceptors.response.use(
     },
 );
 
+const updateAccessToken = (accessToken) => {
+    AxiosClient.defaults.headers.common['Authorization'] = `Bearer ${accessToken}`;
+};
+(() => {
+    AsyncStorage.getItem('access_Token')
+        .then((value) => {
+            updateAccessToken(value.toString());
+            console.log(Date.now(), 'accessToeken--', value);
+        })
+        .catch((err) => console.log(err));
+})();
+export { updateAccessToken };
 export default AxiosClient;
