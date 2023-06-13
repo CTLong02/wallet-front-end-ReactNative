@@ -6,8 +6,10 @@ import {
     KeyboardAvoidingView,
     TouchableWithoutFeedback,
     TouchableOpacity,
+    TouchableHighlight,
     Image,
     ScrollView,
+    Modal,
 } from 'react-native';
 import { styled } from 'nativewind';
 const StyledTouchableWithoutFeedback = styled(TouchableWithoutFeedback);
@@ -19,6 +21,8 @@ const StyledKeyboardAvoidingView = styled(KeyboardAvoidingView);
 const StyledImage = styled(Image);
 const StyledTouchableOpacity = styled(TouchableOpacity);
 const StyledScrollView = styled(ScrollView);
+const StyledModal = styled(Modal);
+const StyledTouchableHighlight = styled(TouchableHighlight);
 
 export {
     StyledView,
@@ -30,4 +34,6 @@ export {
     StyledTouchableWithoutFeedback,
     StyledTouchableOpacity,
     StyledScrollView,
+    StyledModal,
+    StyledTouchableHighlight,
 };

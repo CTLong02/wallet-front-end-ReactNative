@@ -1,9 +1,8 @@
 import { useSelector } from 'react-redux';
 import {
     StyledText,
-    StyledKeyboardAvoidingView,
-    StyledSafeAreaView,
     StyledTouchableWithoutFeedback,
+    StyledTouchableOpacity,
     StyledView,
     StyledImage,
     StyledScrollView,
@@ -53,11 +52,11 @@ function Wallet() {
                 ) : (
                     <></>
                 )}
-                <StyledTouchableWithoutFeedback onPress={handleCreateCard}>
+                <StyledTouchableOpacity onPress={handleCreateCard} delayPressIn={100}>
                     <StyledText className="text-center px-3 py-2 mt-6 bg-cyan-800 rounded-lg shadow-lg font-semibold text-white text-lg">
                         Thêm thẻ
                     </StyledText>
-                </StyledTouchableWithoutFeedback>
+                </StyledTouchableOpacity>
             </StyledScrollView>
         </StyledView>
     );

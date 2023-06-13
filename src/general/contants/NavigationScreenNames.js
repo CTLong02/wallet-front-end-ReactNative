@@ -13,4 +13,7 @@ export default NavigationScreenNames = {
     DrawerOpen: 'draweropen',
     DrawerClose: 'drawerclose',
     CreateCard: 'createcard',
+    TransferMoney: 'transfer_money',
+    TransferByWallet: 'transfer_by_wallet',
+    EnterMoney: 'enter_money',
 };

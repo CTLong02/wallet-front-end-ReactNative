@@ -4,6 +4,7 @@ import {
     StyledText,
     StyledTextInput,
     StyledTouchableWithoutFeedback,
+    StyledTouchableOpacity,
 } from '../../general/components/ComponentsApp';
 import { Picker } from '@react-native-community/picker';
 import moment from 'moment';
@@ -86,11 +87,11 @@ function CreateCard() {
                         </StyledView>
                     </StyledView>
                 </StyledView>
-                <StyledTouchableWithoutFeedback onPress={handleCreateCard}>
+                <StyledTouchableOpacity onPress={handleCreateCard} delayPressIn={100}>
                     <StyledText className="mt-4 text-center py-2 text-lg font-semibold text-white bg-cyan-800 rounded-lg">
                         Thêm
                     </StyledText>
-                </StyledTouchableWithoutFeedback>
+                </StyledTouchableOpacity>
             </StyledView>
         </StyledView>
     );

@@ -8,6 +8,8 @@ import Login from './src/features/signin';
 import NavigationScreenNames from './src/general/contants/NavigationScreenNames';
 import Dashboard from './src/features/home/index';
 import CreateCard from './src/features/home/CreateCard';
+import TransferByWallet from './src/features/transferMoney/screens/TransferWithWallet';
+import EnterMoney from './src/features/transferMoney/screens/EnterMoney';
 
 const Stack = createStackNavigator();
 function App() {
@@ -35,6 +37,13 @@ function App() {
                             ></Stack.Screen>
                         </Stack.Group>
                         <Stack.Screen name={NavigationScreenNames.CreateCard} component={CreateCard}></Stack.Screen>
+                        <Stack.Group>
+                            <Stack.Screen
+                                name={NavigationScreenNames.TransferByWallet}
+                                component={TransferByWallet}
+                            ></Stack.Screen>
+                            <Stack.Screen name={NavigationScreenNames.EnterMoney} component={EnterMoney}></Stack.Screen>
+                        </Stack.Group>
                     </Stack.Navigator>
                 </NavigationContainer>
             </SafeAreaProvider>
