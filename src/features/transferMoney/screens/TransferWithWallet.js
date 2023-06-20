@@ -9,16 +9,30 @@ import {
 import NavigationScreenNames from '../../../general/contants/NavigationScreenNames';
 import { useNavigation } from '@react-navigation/native';
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import ServiceApi from '../../../api/ServiceApi';
+import { setReceiver } from '../../../app/appSlice';
 function TransferByWallet() {
     const navigation = useNavigation();
+    const dispatch = useDispatch();
     const handleBack = () => {
         navigation.navigate({ name: NavigationScreenNames.Dashboard });
     };
     const [phoneNumbers, setPhoneNumbers] = useState('');
-    const handleContinue = () => {
-        const regex = /^(0|\+84)\d{9,10}$/;
-        if (regex.test(phoneNumbers)) {
+    const handleContinue = async () => {
+        const responseByPhone = await ServiceApi.getNameByPhone({
+            phoneNumbers,
+        });
+        // console.log('responseByPhone', responseByPhone);
+        if (responseByPhone && responseByPhone.result === 'success') {
             navigation.navigate({ name: NavigationScreenNames.EnterMoney });
+            dispatch(
+                setReceiver({
+                    name: responseByPhone.data.fullname,
+                    id: responseByPhone.data.id,
+                    phone: phoneNumbers,
+                }),
+            );
         }
     };
     return (

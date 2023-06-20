@@ -14,7 +14,7 @@ import NavigationScreenNames from '../../general/contants/NavigationScreenNames'
 import { Dimensions } from 'react-native';
 function Wallet() {
     const account = useSelector((state) => state.app.account);
-    const [cards, setCards] = useState();
+    const [cards, setCards] = useState([]);
     const navigation = useNavigation();
     const screenHeight = Dimensions.get('window').height;
     useEffect(() => {
@@ -38,7 +38,7 @@ function Wallet() {
                 </StyledView>
             </StyledView>
             <StyledScrollView className="px-4">
-                {cards ? (
+                {cards && cards.length > 0 ? (
                     cards.map((card, index) => {
                         return (
                             <Card

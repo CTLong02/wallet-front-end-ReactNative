@@ -7,6 +7,8 @@ import AuthApi from '../../api/AuthApi';
 import { toSha256 } from '../../general/utils/toSha265';
 import { useDispatch } from 'react-redux';
 import { signIn } from '../../app/appSlice';
+import { StyledTouchableOpacity } from '../../general/components/ComponentsApp';
+import Toasts from '../../app/components/Toasts';
 
 const StyledTouchableWithoutFeedback = styled(TouchableWithoutFeedback);
 const StyledSafeAreaView = styled(SafeAreaView);
@@ -39,7 +41,9 @@ function SignIn() {
             ...form,
             password: toSha256(form.password),
         });
-        if (res.result === 'success') {
+        console.log(res, 'res');
+        if (res && res.result === 'success') {
+            Toasts.showSuccess(`Xin chào ${res.data.fullname}!`);
             dispatch(signIn(res.data));
             navigation.navigate({ name: NavigationScreenNames.Dashboard });
         }
@@ -94,13 +98,13 @@ function SignIn() {
                             </StyledTouchableWithoutFeedback>
                         </StyledView>
                     </StyledView>
-                    <StyledView className="flex flex-row mt-5">
+                    <StyledView className="flex flex-row mt-5 items-center">
                         <StyledView>
                             <StyledText className="text-white font-bold text-lg">Bạn chưa có Tài khoản ?</StyledText>
                         </StyledView>
-                        <StyledTouchableWithoutFeedback onPress={handlePressSignUp}>
+                        <StyledTouchableOpacity delayPressIn={300} onPress={handlePressSignUp}>
                             <StyledText className="text-amber-500 font-bold ml-3 text-lg">Đăng ký</StyledText>
-                        </StyledTouchableWithoutFeedback>
+                        </StyledTouchableOpacity>
                     </StyledView>
                 </StyledView>
             </StyledKeyboardAvoidingView>

@@ -14,6 +14,10 @@ AsyncStorage.getItem('access_Token')
 const initialState = {
     isLogin: isHasAccessToken,
     account: undefined,
+    receiverName: undefined,
+    receiverId: undefined,
+    receiverPhone: undefined,
+    transactionInfor: undefined,
 };
 
 const appSlice = createSlice({
@@ -27,7 +31,20 @@ const appSlice = createSlice({
         },
         signOut: (state) => {
             state.account = undefined;
+            receiverName = undefined;
+            receiverId = undefined;
             AsyncStorage.removeItem('access_Token');
+        },
+        setAccountNew: (state, action) => {
+            state.account = { ...action.payload };
+        },
+        setTransactionInfor: (state, action) => {
+            state.transactionInfor = { ...action.payload };
+        },
+        setReceiver: (state, action) => {
+            state.receiverName = action.payload.name;
+            state.receiverId = action.payload.id;
+            state.receiverPhone = action.payload.phone;
         },
         createCard: (state, action) => {
             state.account = {
@@ -39,5 +56,5 @@ const appSlice = createSlice({
 });
 
 const { reducer, actions } = appSlice;
-export const { signIn, signOut, createCard } = actions;
+export const { signIn, signOut, createCard, setReceiver, setAccountNew, setTransactionInfor } = actions;
 export default reducer;

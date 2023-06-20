@@ -17,6 +17,9 @@ import left from '../../assets/icon/left.png';
 import NavigationScreenNames from '../../general/contants/NavigationScreenNames';
 import AuthApi from '../../api/AuthApi';
 import { toSha256 } from '../../general/utils/toSha265';
+import Toasts from '../../app/components/Toasts';
+import { useDispatch } from 'react-redux';
+import { signIn } from '../../app/appSlice';
 
 const StyledView = styled(View);
 const StyledText = styled(Text);
@@ -28,6 +31,7 @@ const StyledTouchableOpacity = styled(TouchableOpacity);
 const StyledKeyboardAvoidingView = styled(KeyboardAvoidingView);
 function SignUp() {
     const navigation = useNavigation();
+    const dispatch = useDispatch();
     const [form, setForm] = useState({
         fullname: '',
         gender: '',
@@ -54,6 +58,11 @@ function SignUp() {
     };
     const handleSignUp = async () => {
         const res = await AuthApi.signUp({ ...form, password: toSha256(form.password) });
+        if (res && res.result === 'success') {
+            Toasts.showSuccess('Bạn đã đăng kí tài khoản thành công');
+            dispatch(signIn(res.data));
+            navigation.navigate({ name: NavigationScreenNames.Dashboard });
+        }
     };
     // console.log(form);
     return (

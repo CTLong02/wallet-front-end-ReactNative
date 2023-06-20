@@ -10,6 +10,8 @@ import Dashboard from './src/features/home/index';
 import CreateCard from './src/features/home/CreateCard';
 import TransferByWallet from './src/features/transferMoney/screens/TransferWithWallet';
 import EnterMoney from './src/features/transferMoney/screens/EnterMoney';
+import Toast from 'react-native-toast-message';
+import FinishAfterTransferMoney from './src/features/transferMoney/screens/FinishAfterTransferMoney';
 
 const Stack = createStackNavigator();
 function App() {
@@ -43,9 +45,14 @@ function App() {
                                 component={TransferByWallet}
                             ></Stack.Screen>
                             <Stack.Screen name={NavigationScreenNames.EnterMoney} component={EnterMoney}></Stack.Screen>
+                            <Stack.Screen
+                                name={NavigationScreenNames.Finish}
+                                component={FinishAfterTransferMoney}
+                            ></Stack.Screen>
                         </Stack.Group>
                     </Stack.Navigator>
                 </NavigationContainer>
+                <Toast></Toast>
             </SafeAreaProvider>
         </Provider>
     );

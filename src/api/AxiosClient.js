@@ -2,6 +2,7 @@ import queryString from 'query-string';
 import axios from 'axios';
 import AppCofig from '../general/contants/AppCofig';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import Toasts from '../app/components/Toasts';
 
 const sTag = '[AxiosClient]';
 
@@ -35,11 +36,12 @@ AxiosClient.interceptors.response.use(
         console.log(`${sTag} ${err}`);
         let errMessage = null;
         const response = err.response;
-        console.log({ response });
+        // console.log({ response });
         if (response && response.data) {
             const data = response.data;
             const { result, reason, detail } = data;
-            if (result === 'failed') {
+            console.log('data', data);
+            if (result === 'fail') {
                 if (reason) {
                     errMessage = reason;
                 } else if (detail) {
@@ -47,9 +49,11 @@ AxiosClient.interceptors.response.use(
                 }
             }
             if (errMessage) {
+                console.log('errMessage', errMessage);
+                Toasts.showError(errMessage);
             }
         }
-        throw err;
+        // throw err;
     },
 );
 

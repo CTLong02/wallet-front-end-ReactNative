@@ -14,6 +14,7 @@ import { useNavigation } from '@react-navigation/native';
 import NavigationScreenNames from '../../general/contants/NavigationScreenNames';
 import { useDispatch } from 'react-redux';
 import { createCard } from '../../app/appSlice';
+import Toasts from '../../app/components/Toasts';
 function CreateCard() {
     const account = useSelector((state) => state.app.account);
     const navigation = useNavigation();
@@ -46,6 +47,7 @@ function CreateCard() {
         });
         console.log('res', res);
         if (res.result === 'success') {
+            Toasts.showSuccess(`Bạn đã liên kết thẻ ${res.data[account.cards.length].bankName} thành công!`);
             dispatch(createCard(res.data));
             navigation.navigate(NavigationScreenNames.Wallet);
         }
