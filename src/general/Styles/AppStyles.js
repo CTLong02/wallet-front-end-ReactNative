@@ -214,6 +214,9 @@ const styles = StyleSheet.create({
     basis1_5: {
         flexBasis: '20%',
     },
+    basis1_6: {
+        flexBasis: '17%',
+    },
     justifyCenter: {
         justifyContent: 'center',
     },

@@ -1,12 +1,14 @@
 import { useEffect, useState } from 'react';
 import { DrawerActions, useNavigation } from '@react-navigation/native';
 import { useSelector } from 'react-redux';
-import { Text, SafeAreaView, View, TouchableOpacity, Image } from 'react-native';
+import { Text, SafeAreaView, View, TouchableOpacity, Image, ScrollView } from 'react-native';
 import { handleMoneyToString } from '../../general/utils/handleString';
 import Service from './components/Service';
 import Promotion from './components/Promotion';
 import ModalTransferMoneyOptions from './components/ModalTransferMoneyOptions';
 import styles from '../../general/Styles/AppStyles';
+import { useMemo } from 'react';
+import Helper from '../../general/helper/Helper';
 
 function Home() {
     const navigation = useNavigation();
@@ -20,8 +22,10 @@ function Home() {
     useEffect(() => {
         setMoneyWithString(handleMoneyToString(account?.remainMoney));
     }, [account]);
+    const deviceHeight = useMemo(() => Helper.deviceHeight());
+    const deviceWidth = useMemo(() => Helper.deviceWidth());
     return (
-        <SafeAreaView>
+        <ScrollView style={{ maxHeight: deviceHeight - 80, overflow: 'scroll' }}>
             <View style={[styles.header, styles.bgGreenMain, styles.px3]}>
                 <View style={[styles.flex, styles.flexRow, styles.justifyBetween]}>
                     <View>
@@ -101,8 +105,31 @@ function Home() {
                 </View>
             </View>
             <View style={styles.px3}>
-                <Service></Service>
+                <Service setIsModalTransferMoneyOptions={setIsModalTransferMoneyOptions}></Service>
             </View>
+            <ScrollView horizontal style={[styles.mx3, styles.mt3, { maxWidth: deviceWidth }]}>
+                <View style={[styles.mr3]}>
+                    <Image
+                        style={{ width: 300, height: 200, resizeMode: 'cover' }}
+                        source={require('../../assets/img/img_toast.png')}
+                    ></Image>
+                    <View style={[styles.roundedBottomXl, styles.bgWhite, styles.p3, { width: 300 }]}></View>
+                </View>
+                <View style={[styles.mr3]}>
+                    <Image
+                        style={{ width: 300, height: 200, resizeMode: 'cover' }}
+                        source={require('../../assets/img/img_toast.png')}
+                    ></Image>
+                    <View style={[styles.roundedBottomXl, styles.bgWhite, styles.p3, { width: 300 }]}></View>
+                </View>
+                <View style={[styles.mr3]}>
+                    <Image
+                        style={{ width: 300, height: 200, resizeMode: 'cover' }}
+                        source={require('../../assets/img/img_toast.png')}
+                    ></Image>
+                    <View style={[styles.roundedBottomXl, styles.bgWhite, styles.p3, { width: 300 }]}></View>
+                </View>
+            </ScrollView>
             <View style={[styles.px3, styles.mt3]}>
                 <Promotion></Promotion>
             </View>
@@ -114,7 +141,7 @@ function Home() {
             ) : (
                 <></>
             )}
-        </SafeAreaView>
+        </ScrollView>
     );
 }
 

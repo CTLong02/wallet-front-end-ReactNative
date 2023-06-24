@@ -2,13 +2,13 @@ import { Text, View, TouchableWithoutFeedback, Image } from 'react-native';
 import styles from '../../../general/Styles/AppStyles';
 import { useNavigation } from '@react-navigation/native';
 import NavigationScreenNames from '../../../general/contants/NavigationScreenNames';
-function Service() {
+function Service({ setIsModalTransferMoneyOptions }) {
     const navigation = useNavigation();
     return (
         <View style={[styles.bgWhite, styles.roundedLg, styles.shawDowLg, styles.p3]}>
             <Text style={[styles.textGreenMain, styles.fw600, styles.textLg]}>Dịch vụ</Text>
             <View style={[styles.flex, styles.flexRow, styles.justifyBetween, styles.mt3, styles.flexWrap]}>
-                <TouchableWithoutFeedback>
+                <TouchableWithoutFeedback onPress={() => setIsModalTransferMoneyOptions(true)}>
                     <View style={[styles.flex, styles.flexCol, styles.itemsCenter, styles.basis1_5]}>
                         <View style={[styles.h14W14, styles.containerCenter, styles.bgGreen, styles.roundedMd]}>
                             <Image
@@ -29,7 +29,9 @@ function Service() {
                         </Text>
                     </View>
                 </TouchableWithoutFeedback>
-                <TouchableWithoutFeedback>
+                <TouchableWithoutFeedback
+                    onPress={() => navigation.navigate({ name: NavigationScreenNames.RechargeMobile })}
+                >
                     <View style={[styles.flex, styles.flexCol, styles.itemsCenter, styles.basis1_5]}>
                         <View style={[styles.h14W14, styles.containerCenter, styles.bgGreen, styles.roundedMd]}>
                             <Image style={styles.h10W10} source={require('../../../assets/icon/mobile.png')}></Image>

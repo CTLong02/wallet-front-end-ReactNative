@@ -134,6 +134,56 @@ function Invoice() {
                 </View>
                 <View style={styles.mt3}>
                     <Text style={[styles.textGreenMain, styles.fw500]}>Danh mục dịch vụ</Text>
+                    <View style={[styles.flexRow, styles.flexWrap, styles.mt3]}>
+                        <View style={[styles.basis1_5, styles.flexCol, styles.itemsCenter, styles.mt3]}>
+                            <View style={[styles.bgGreen, styles.h12W12, styles.containerCenter, styles.roundedMd]}>
+                                <Image source={require('../../assets/icon/electric.png')}></Image>
+                            </View>
+                            <Text style={[styles.textSx, styles.textBlack]}>Điện</Text>
+                        </View>
+                        <View style={[styles.basis1_5, styles.flexCol, styles.itemsCenter, styles.mt3]}>
+                            <View style={[styles.bgGreen, styles.h12W12, styles.containerCenter, styles.roundedMd]}>
+                                <Image source={require('../../assets/icon/water.png')}></Image>
+                            </View>
+                            <Text style={[styles.textSx, styles.textBlack]}>Nước</Text>
+                        </View>
+                        <View style={[styles.basis1_5, styles.flexCol, styles.itemsCenter, styles.mt3]}>
+                            <View style={[styles.bgGreen, styles.h12W12, styles.containerCenter, styles.roundedMd]}>
+                                <Image source={require('../../assets/icon/network.png')}></Image>
+                            </View>
+                            <Text style={[styles.textSx, styles.textBlack]}>Internet</Text>
+                        </View>
+                        <View style={[styles.basis1_5, styles.flexCol, styles.itemsCenter, styles.mt3]}>
+                            <View style={[styles.bgGreen, styles.h12W12, styles.containerCenter, styles.roundedMd]}>
+                                <Image source={require('../../assets/icon/tv.png')}></Image>
+                            </View>
+                            <Text style={[styles.textSx, styles.textBlack]}>Truyền hình</Text>
+                        </View>
+                        <View style={[styles.basis1_5, styles.flexCol, styles.itemsCenter, styles.mt3]}>
+                            <View style={[styles.bgGreen, styles.h12W12, styles.containerCenter, styles.roundedMd]}>
+                                <Image source={require('../../assets/icon/phone.png')}></Image>
+                            </View>
+                            <Text style={[styles.textSx, styles.textBlack]}>Điện thoại cố định</Text>
+                        </View>
+                        <View style={[styles.basis1_5, styles.flexCol, styles.itemsCenter, styles.mt3]}>
+                            <View style={[styles.bgGreen, styles.h12W12, styles.containerCenter, styles.roundedMd]}>
+                                <Image source={require('../../assets/icon/fee.png')}></Image>
+                            </View>
+                            <Text style={[styles.textSx, styles.textBlack]}>Học phí</Text>
+                        </View>
+                        <View style={[styles.basis1_5, styles.flexCol, styles.itemsCenter, styles.mt3]}>
+                            <View style={[styles.bgGreen, styles.h12W12, styles.containerCenter, styles.roundedMd]}>
+                                <Image source={require('../../assets/icon/icInsurance.png')}></Image>
+                            </View>
+                            <Text style={[styles.textSx, styles.textBlack]}>Bảo hiểm</Text>
+                        </View>
+                        <View style={[styles.basis1_5, styles.flexCol, styles.itemsCenter, styles.mt3]}>
+                            <View style={[styles.bgGreen, styles.h12W12, styles.containerCenter, styles.roundedMd]}>
+                                <Image source={require('../../assets/icon/list.png')}></Image>
+                            </View>
+                            <Text style={[styles.textSx, styles.textBlack]}>Hóa đơn khác</Text>
+                        </View>
+                    </View>
                 </View>
             </View>
         </View>

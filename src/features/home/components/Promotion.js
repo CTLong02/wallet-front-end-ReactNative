@@ -1,9 +1,10 @@
-import { StyledView, StyledText } from '../../../general/components/ComponentsApp';
+import { View, Text } from 'react-native';
+import styles from '../../../general/Styles/AppStyles';
 function Promotion() {
     return (
-        <StyledView className="rounded-lg shadow-lg bg-white p-3">
-            <StyledText className="text-lg text-cyan-700 font-semibold">Ưu dãi</StyledText>
-        </StyledView>
+        <View style={[styles.bgWhite, styles.shawDowLg, styles.p3, styles.roundedMd]}>
+            <Text style={[styles.fw600, styles.textLg, styles.textGreenMain]}>Ưu dãi</Text>
+        </View>
     );
 }
 

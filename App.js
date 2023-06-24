@@ -13,6 +13,7 @@ import EnterMoney from './src/features/transferMoney/screens/EnterMoney';
 import Toast from 'react-native-toast-message';
 import FinishAfterTransferMoney from './src/features/transferMoney/screens/FinishAfterTransferMoney';
 import Invoice from './src/features/invoice/Invoice';
+import RechargeMobile from './src/features/RechargeMobile/RechargeMobile';
 const Stack = createStackNavigator();
 function App() {
     return (
@@ -38,6 +39,10 @@ function App() {
                                 options={{ headerShown: false }}
                             ></Stack.Screen>
                             <Stack.Screen name={NavigationScreenNames.Invoice} component={Invoice}></Stack.Screen>
+                            <Stack.Screen
+                                name={NavigationScreenNames.RechargeMobile}
+                                component={RechargeMobile}
+                            ></Stack.Screen>
                         </Stack.Group>
                         <Stack.Screen name={NavigationScreenNames.CreateCard} component={CreateCard}></Stack.Screen>
                         <Stack.Group>

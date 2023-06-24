@@ -18,4 +18,5 @@ export default NavigationScreenNames = {
     EnterMoney: 'enter_money',
     Finish: 'finish_after_transfer_money',
     Invoice: 'pay_invoice',
+    RechargeMobile: 'recharge_mobile',
 };
