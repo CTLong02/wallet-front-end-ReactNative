@@ -3,6 +3,7 @@ import { styled, withExpoSnack } from 'nativewind';
 import { useNavigation } from '@react-navigation/native';
 import left from '../../assets/icon/left.png';
 import NavigationScreenNames from '../../general/contants/NavigationScreenNames';
+import styles from '../../general/Styles/AppStyles';
 
 const StyledView = styled(View);
 const StyledText = styled(Text);
@@ -18,46 +19,46 @@ function Forgot() {
         navigation.navigate(NavigationScreenNames.SignIn);
     };
     return (
-        <StyledSafeAreaView style={{ backgroundColor: '#196371' }} className="min-h-screen">
-            <StyledView className="py-3">
-                <StyledTouchableOpacity onPress={handleBackSignIn}>
-                    <StyledImage source={left}></StyledImage>
-                </StyledTouchableOpacity>
-            </StyledView>
-            <StyledKeyboardAvoidingView className="mt-20">
-                <StyledView className="px-5">
-                    <StyledView style={{ backgroundColor: '#fff' }} className="px-4 py-3 rounded-md">
-                        <StyledView>
-                            <StyledText style={{ color: '#176980' }} className="font-semibold text-base">
+        <SafeAreaView style={[styles.bgGreenMain, styles.hFull, styles.flex, styles.flexCol]}>
+            <View style={styles.my3}>
+                <TouchableOpacity onPress={handleBackSignIn}>
+                    <Image source={left}></Image>
+                </TouchableOpacity>
+            </View>
+            <KeyboardAvoidingView style={[styles.flexCol, styles.justifyCenter, styles.flexGrow]}>
+                <View style={styles.mx3}>
+                    <View style={[styles.bgWhite, styles.p3, styles.roundedMd]}>
+                        <View>
+                            <Text style={[styles.textGreenMain, styles.textSx, styles.fw500, styles.mt3]}>
                                 Số điện thoại
-                            </StyledText>
-                            <StyledTextInput
+                            </Text>
+                            <TextInput
                                 placeholder="Nhập số điện thoại"
-                                className="text-xl border-b-2 border-gray-300 border-solid"
-                            ></StyledTextInput>
-                        </StyledView>
-                        <StyledView className="mt-2">
-                            <StyledText style={{ color: '#176980' }} className="font-semibold text-base">
+                                style={[styles.borderB, styles.textMd]}
+                            ></TextInput>
+                        </View>
+                        <View style={styles.mt3}>
+                            <Text style={[styles.textGreenMain, styles.textSx, styles.fw500, styles.mt3]}>
                                 Số CCCD/CMND
-                            </StyledText>
-                            <StyledTextInput
+                            </Text>
+                            <TextInput
                                 placeholder="Nhập số CCCD/CMND"
                                 secureTextEntry={true}
-                                className="text-xl border-b-2 border-gray-300 border-solid"
-                            ></StyledTextInput>
-                        </StyledView>
-                        <StyledView className="mt-5">
-                            <StyledTouchableOpacity className="rounded-lg py-2" style={{ backgroundColor: '#196371' }}>
-                                <StyledText className="text-white text-base text-center font-semibold">
+                                style={[styles.borderB, styles.textMd]}
+                            ></TextInput>
+                        </View>
+                        <View style={styles.mt3}>
+                            <TouchableOpacity style={[styles.p2, styles.bgGreenMain, styles.roundedLg]}>
+                                <Text style={[styles.textWhite, styles.textMd, styles.fw600, styles.textCenter]}>
                                     QUÊN MẬT KHẨU
-                                </StyledText>
-                            </StyledTouchableOpacity>
-                        </StyledView>
-                    </StyledView>
-                </StyledView>
-            </StyledKeyboardAvoidingView>
-        </StyledSafeAreaView>
+                                </Text>
+                            </TouchableOpacity>
+                        </View>
+                    </View>
+                </View>
+            </KeyboardAvoidingView>
+        </SafeAreaView>
     );
 }
 
-export default withExpoSnack(Forgot);
+export default Forgot;

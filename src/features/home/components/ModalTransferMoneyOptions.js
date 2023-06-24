@@ -1,13 +1,9 @@
-import {
-    StyledImage,
-    StyledModal,
-    StyledText,
-    StyledTouchableWithoutFeedback,
-    StyledTouchableOpacity,
-    StyledView,
-} from '../../../general/components/ComponentsApp';
+import { Text, View, TouchableWithoutFeedback, TouchableOpacity, Image, Modal } from 'react-native';
+import { useMemo } from 'react';
 import NavigationScreenNames from '../../../general/contants/NavigationScreenNames';
 import { useNavigation } from '@react-navigation/native';
+import Helper from '../../../general/helper/Helper';
+import styles from '../../../general/Styles/AppStyles';
 function ModalTransferMoneyOptions({ isModalTransferMoneyOptions, setIsModalTransferMoneyOptions }) {
     const navigation = useNavigation();
     const handleClose = () => {
@@ -17,51 +13,54 @@ function ModalTransferMoneyOptions({ isModalTransferMoneyOptions, setIsModalTran
         setIsModalTransferMoneyOptions(false);
         navigation.navigate({ name: page });
     };
+    const deviceHeight = useMemo(() => Helper.deviceHeight());
     return (
-        <StyledModal
+        <Modal
             onRequestClose={() => setIsModalTransferMoneyOptions(false)}
             transparent={true}
             visible={isModalTransferMoneyOptions}
         >
-            <StyledView className="h-full flex flex-col justify-end" style={{ backgroundColor: 'rgba(0,0,0,0.4)' }}>
-                <StyledTouchableWithoutFeedback onPress={handleClose}>
-                    <StyledView className="flex-grow"></StyledView>
-                </StyledTouchableWithoutFeedback>
-                <StyledTouchableWithoutFeedback>
-                    <StyledView className="bg-white pt-6 pb-10">
-                        <StyledView className="flex flex-row px-4 justify-between">
-                            <StyledView className="basis-1/4 flex flex-col items-center">
-                                <StyledTouchableOpacity
+            <View
+                style={[
+                    styles.hFull,
+                    styles.flex,
+                    styles.flexCol,
+                    styles.justifyEnd,
+                    { backgroundColor: 'rgba(0,0,0,0.4)' },
+                ]}
+            >
+                <TouchableWithoutFeedback onPress={handleClose}>
+                    <View style={styles.flexGrow}></View>
+                </TouchableWithoutFeedback>
+                <TouchableWithoutFeedback>
+                    <View style={[styles.bgWhite, styles.p3]}>
+                        <View style={[styles.flex, styles.flexRow, styles.justifyBetween, styles.px3]}>
+                            <View style={[styles.flex, styles.flexCol, styles.itemsCenter, styles.basis1_4]}>
+                                <TouchableOpacity
                                     delayPressIn={100}
                                     onPress={() => handleToPage(`${NavigationScreenNames.TransferByWallet}`)}
                                 >
-                                    <StyledImage
-                                        source={require('../../../assets/icon/transferWallet.png')}
-                                    ></StyledImage>
-                                </StyledTouchableOpacity>
-                                <StyledText className="text-center">Đến ví</StyledText>
-                            </StyledView>
-                            <StyledView className="basis-1/4 flex flex-col items-center">
-                                <StyledTouchableOpacity delayPressIn={100}>
-                                    <StyledImage
-                                        source={require('../../../assets/icon/transferBank.png')}
-                                    ></StyledImage>
-                                </StyledTouchableOpacity>
-                                <StyledText className="text-center">Đến ngân hàng</StyledText>
-                            </StyledView>
-                            <StyledView className="basis-1/4 flex flex-col items-center">
-                                <StyledTouchableOpacity delayPressIn={100}>
-                                    <StyledImage
-                                        source={require('../../../assets/icon/transferCast.png')}
-                                    ></StyledImage>
-                                </StyledTouchableOpacity>
-                                <StyledText className="text-center">Điểm đến nhận tiền mặt</StyledText>
-                            </StyledView>
-                        </StyledView>
-                    </StyledView>
-                </StyledTouchableWithoutFeedback>
-            </StyledView>
-        </StyledModal>
+                                    <Image source={require('../../../assets/icon/transferWallet.png')}></Image>
+                                </TouchableOpacity>
+                                <Text style={styles.textCenter}>Đến ví</Text>
+                            </View>
+                            <View style={[styles.flex, styles.flexCol, styles.itemsCenter, styles.basis1_4]}>
+                                <TouchableOpacity delayPressIn={100}>
+                                    <Image source={require('../../../assets/icon/transferBank.png')}></Image>
+                                </TouchableOpacity>
+                                <Text style={styles.textCenter}>Đến ngân hàng</Text>
+                            </View>
+                            <View style={[styles.flex, styles.flexCol, styles.itemsCenter, styles.basis1_4]}>
+                                <TouchableOpacity delayPressIn={100}>
+                                    <Image source={require('../../../assets/icon/transferCast.png')}></Image>
+                                </TouchableOpacity>
+                                <Text style={styles.textCenter}>Điểm đến nhận tiền mặt</Text>
+                            </View>
+                        </View>
+                    </View>
+                </TouchableWithoutFeedback>
+            </View>
+        </Modal>
     );
 }
 

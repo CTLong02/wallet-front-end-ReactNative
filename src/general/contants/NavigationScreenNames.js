@@ -17,4 +17,5 @@ export default NavigationScreenNames = {
     TransferByWallet: 'transfer_by_wallet',
     EnterMoney: 'enter_money',
     Finish: 'finish_after_transfer_money',
+    Invoice: 'pay_invoice',
 };

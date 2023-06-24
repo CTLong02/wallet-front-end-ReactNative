@@ -1,17 +1,24 @@
 import {
-    StyledImage,
-    StyledKeyboardAvoidingView,
-    StyledText,
-    StyledTextInput,
-    StyledTouchableOpacity,
-    StyledView,
-} from '../../../general/components/ComponentsApp';
+    Text,
+    SafeAreaView,
+    View,
+    TextInput,
+    KeyboardAvoidingView,
+    TouchableWithoutFeedback,
+    TouchableOpacity,
+    TouchableHighlight,
+    Image,
+    ScrollView,
+    Modal,
+} from 'react-native';
 import NavigationScreenNames from '../../../general/contants/NavigationScreenNames';
 import { useNavigation } from '@react-navigation/native';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import ServiceApi from '../../../api/ServiceApi';
 import { setReceiver } from '../../../app/appSlice';
+import styles from '../../../general/Styles/AppStyles';
+import Helper from '../../../general/helper/Helper';
 function TransferByWallet() {
     const navigation = useNavigation();
     const dispatch = useDispatch();
@@ -23,7 +30,6 @@ function TransferByWallet() {
         const responseByPhone = await ServiceApi.getNameByPhone({
             phoneNumbers,
         });
-        // console.log('responseByPhone', responseByPhone);
         if (responseByPhone && responseByPhone.result === 'success') {
             navigation.navigate({ name: NavigationScreenNames.EnterMoney });
             dispatch(
@@ -35,32 +41,56 @@ function TransferByWallet() {
             );
         }
     };
+    const deviceHeight = Helper.deviceHeight();
     return (
-        <StyledView className="max-h-screen">
-            <StyledView className="h-full flex flex-col justify-between">
-                <StyledView>
-                    <StyledView className="bg-cyan-800 rounded-b-xl pt-2 pb-10">
-                        <StyledTouchableOpacity delayPressIn={100} onPress={handleBack}>
-                            <StyledImage source={require('../../../assets/icon/left.png')}></StyledImage>
-                        </StyledTouchableOpacity>
-                    </StyledView>
-                    <StyledView className="p-3 mx-4 bg-white relative bottom-6 rounded-lg">
-                        <StyledTextInput
-                            className="rounded-xl border-2 border-slate-400 border-solid px-3"
+        <View style={{ maxHeight: deviceHeight }}>
+            <View style={[styles.hFull, styles.flex, styles.flexCol, styles.justifyBetween]}>
+                <View>
+                    <View style={styles.header}>
+                        <TouchableOpacity delayPressIn={100} onPress={handleBack}>
+                            <Image source={require('../../../assets/icon/left.png')}></Image>
+                        </TouchableOpacity>
+                    </View>
+                    <View
+                        style={[
+                            styles.mx3,
+                            styles.p3,
+                            styles.bgWhite,
+                            styles.shawDowLg,
+                            ,
+                            styles.roundedMd,
+                            { position: 'relative', bottom: '15%' },
+                        ]}
+                    >
+                        <TextInput
+                            style={[styles.px3, styles.roundedMd, styles.border, styles.textMd]}
                             placeholder="Nhập số điện thoại"
+                            keyboardType="number-pad"
                             onChangeText={(text) => setPhoneNumbers(text)}
-                        ></StyledTextInput>
-                    </StyledView>
-                </StyledView>
-                <StyledKeyboardAvoidingView>
-                    <StyledTouchableOpacity onPress={handleContinue}>
-                        <StyledText className="mx-12 my-4 py-2 text-center bg-cyan-800 rounded-xl shadow-lg text-white text-lg">
+                        ></TextInput>
+                    </View>
+                </View>
+                <KeyboardAvoidingView>
+                    <TouchableOpacity onPress={handleContinue}>
+                        <Text
+                            style={[
+                                styles.shawDowLg,
+                                styles.p2,
+                                styles.bgGreenMain,
+                                styles.textCenter,
+                                styles.textWhite,
+                                styles.textLg,
+                                styles.fw600,
+                                styles.roundedLg,
+                                { marginHorizontal: 40 },
+                            ]}
+                        >
                             Tiếp tục
-                        </StyledText>
-                    </StyledTouchableOpacity>
-                </StyledKeyboardAvoidingView>
-            </StyledView>
-        </StyledView>
+                        </Text>
+                    </TouchableOpacity>
+                </KeyboardAvoidingView>
+            </View>
+        </View>
     );
 }
 

@@ -1,11 +1,12 @@
 import { Text, View, Image } from 'react-native';
-import { styled, withExpoSnack } from 'nativewind';
+import { styled } from 'nativewind';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import NavigationScreenNames from '../../general/contants/NavigationScreenNames';
 import Wallet from './Wallet';
 import Message from './Message';
 import History from './History';
 import DrawMain from '../DrawerNavigator';
+import styles from '../../general/Styles/AppStyles';
 const Tab = createBottomTabNavigator();
 const StyledImage = styled(Image);
 const StyledView = styled(View);
@@ -44,20 +45,21 @@ function Dashboard() {
                     options={{
                         tabBarIcon: ({ focused }) => {
                             return (
-                                <StyledView className="flex flex-col items-center">
-                                    <StyledImage
+                                <View
+                                    style={[
+                                        styles.flex,
+                                        styles.flexCol,
+                                        styles.itemsCenter,
+                                        { opacity: focused ? 1 : 0.5 },
+                                    ]}
+                                >
+                                    <Image
                                         source={require('../../assets/icon/home.png')}
-                                        className={`w-6 h-6 ${focused ? 'opacity-100' : 'opacity-50'}`}
+                                        style={styles.h6W6}
                                         resizeMode="contain"
-                                    ></StyledImage>
-                                    <StyledText
-                                        className={`font-semibold text-cyan-600 ${
-                                            focused ? 'opacity-100' : 'opacity-50'
-                                        }`}
-                                    >
-                                        Trang chủ
-                                    </StyledText>
-                                </StyledView>
+                                    ></Image>
+                                    <Text style={[styles.fw500, styles.textGreenMain, styles.textSm]}>Trang chủ</Text>
+                                </View>
                             );
                         },
                     }}
@@ -68,20 +70,21 @@ function Dashboard() {
                     options={{
                         tabBarIcon: ({ focused }) => {
                             return (
-                                <StyledView className="flex flex-col items-center">
-                                    <StyledImage
+                                <View
+                                    style={[
+                                        styles.flex,
+                                        styles.flexCol,
+                                        styles.itemsCenter,
+                                        { opacity: focused ? 1 : 0.5 },
+                                    ]}
+                                >
+                                    <Image
                                         source={require('../../assets/icon/wallet.png')}
-                                        className={`w-6 h-6 ${focused ? 'opacity-100' : 'opacity-50'}`}
+                                        style={styles.h6W6}
                                         resizeMode="contain"
-                                    ></StyledImage>
-                                    <StyledText
-                                        className={`font-semibold text-cyan-600 ${
-                                            focused ? 'opacity-100' : 'opacity-50'
-                                        }`}
-                                    >
-                                        Ví
-                                    </StyledText>
-                                </StyledView>
+                                    ></Image>
+                                    <Text style={[styles.fw500, styles.textGreenMain, styles.textSm]}>Ví</Text>
+                                </View>
                             );
                         },
                     }}
@@ -92,20 +95,21 @@ function Dashboard() {
                     options={{
                         tabBarIcon: ({ focused }) => {
                             return (
-                                <StyledView className="flex flex-col items-center">
-                                    <StyledImage
+                                <View
+                                    style={[
+                                        styles.flex,
+                                        styles.flexCol,
+                                        styles.itemsCenter,
+                                        { opacity: focused ? 1 : 0.5 },
+                                    ]}
+                                >
+                                    <Image
                                         source={require('../../assets/icon/message.png')}
-                                        className={`w-6 h-6 ${focused ? 'opacity-100' : 'opacity-50'}`}
+                                        style={styles.h6W6}
                                         resizeMode="contain"
-                                    ></StyledImage>
-                                    <StyledText
-                                        className={`font-semibold text-cyan-600 ${
-                                            focused ? 'opacity-100' : 'opacity-50'
-                                        }`}
-                                    >
-                                        Tin nhắn
-                                    </StyledText>
-                                </StyledView>
+                                    ></Image>
+                                    <Text style={[styles.fw500, styles.textGreenMain, styles.textSm]}>Tin nhắn</Text>
+                                </View>
                             );
                         },
                     }}
@@ -116,20 +120,21 @@ function Dashboard() {
                     options={{
                         tabBarIcon: ({ focused }) => {
                             return (
-                                <StyledView className="flex flex-col items-center">
-                                    <StyledImage
+                                <View
+                                    style={[
+                                        styles.flex,
+                                        styles.flexCol,
+                                        styles.itemsCenter,
+                                        { opacity: focused ? 1 : 0.5 },
+                                    ]}
+                                >
+                                    <Image
                                         source={require('../../assets/icon/history.png')}
-                                        className={`w-6 h-6 ${focused ? 'opacity-100' : 'opacity-50'}`}
+                                        style={styles.h6W6}
                                         resizeMode="contain"
-                                    ></StyledImage>
-                                    <StyledText
-                                        className={`font-semibold text-cyan-600 ${
-                                            focused ? 'opacity-100' : 'opacity-50'
-                                        }`}
-                                    >
-                                        Lịch sử
-                                    </StyledText>
-                                </StyledView>
+                                    ></Image>
+                                    <Text style={[styles.fw500, styles.textGreenMain, styles.textSm]}>Lịch sử</Text>
+                                </View>
                             );
                         },
                     }}
@@ -139,4 +144,4 @@ function Dashboard() {
     );
 }
 
-export default withExpoSnack(Dashboard);
+export default Dashboard;

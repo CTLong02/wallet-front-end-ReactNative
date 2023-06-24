@@ -20,15 +20,8 @@ import { toSha256 } from '../../general/utils/toSha265';
 import Toasts from '../../app/components/Toasts';
 import { useDispatch } from 'react-redux';
 import { signIn } from '../../app/appSlice';
+import styles from '../../general/Styles/AppStyles';
 
-const StyledView = styled(View);
-const StyledText = styled(Text);
-const StyledSafeAreaView = styled(SafeAreaView);
-const StyledScollView = styled(ScrollView);
-const StyledImage = styled(Image);
-const StyledTextInput = styled(TextInput);
-const StyledTouchableOpacity = styled(TouchableOpacity);
-const StyledKeyboardAvoidingView = styled(KeyboardAvoidingView);
 function SignUp() {
     const navigation = useNavigation();
     const dispatch = useDispatch();
@@ -66,103 +59,110 @@ function SignUp() {
     };
     // console.log(form);
     return (
-        <StyledSafeAreaView style={{ backgroundColor: '#176980' }} className="px-5 py-3 min-h-full">
-            <StyledView className="py-2">
-                <StyledTouchableOpacity onPress={handleBackSignIn}>
-                    <StyledImage source={left}></StyledImage>
-                </StyledTouchableOpacity>
-            </StyledView>
-            <StyledScollView>
-                <StyledKeyboardAvoidingView>
-                    <StyledView className="bg-white rounded-md p-5">
-                        <StyledView className="flex flex-row justify-center items-center">
-                            <StyledImage source={user}></StyledImage>
-                        </StyledView>
-                        <StyledView>
-                            <StyledText style={{ color: '#176980' }} className="font-semibold mt-2">
+        <SafeAreaView style={[styles.bgGreenMain, styles.px3, styles.hFull]}>
+            <View style={styles.py3}>
+                <TouchableOpacity onPress={handleBackSignIn}>
+                    <Image source={left}></Image>
+                </TouchableOpacity>
+            </View>
+            <ScrollView>
+                <KeyboardAvoidingView>
+                    <View style={[styles.bgWhite, styles.p3, styles.roundedMd]}>
+                        <View style={[styles.containerCenter]}>
+                            <Image source={user}></Image>
+                        </View>
+                        <View>
+                            <Text style={[styles.textGreenMain, styles.textSx, styles.fw500, styles.mt3]}>
                                 Họ và tên
-                            </StyledText>
-                            <StyledTextInput
+                            </Text>
+                            <TextInput
                                 placeholder="Nhập họ và tên"
-                                className="p-1 border-b-2 border-gray-300 border-solid"
+                                style={[styles.borderB, styles.textSx]}
                                 onChangeText={(text) => handleChangeForm(text, 'fullname')}
-                            ></StyledTextInput>
-                        </StyledView>
-                        <StyledView>
-                            <StyledText style={{ color: '#176980' }} className="font-semibold mt-2">
+                            ></TextInput>
+                        </View>
+                        <View>
+                            <Text style={[styles.textGreenMain, styles.textSx, styles.fw500, styles.mt3]}>
                                 Số điện thoại
-                            </StyledText>
-                            <StyledTextInput
+                            </Text>
+                            <TextInput
                                 placeholder="Nhập số điện thoại"
-                                className="p-1 border-b-2 border-gray-300 border-solid"
+                                style={[styles.borderB, styles.textSx]}
                                 onChangeText={(text) => handleChangeForm(text, 'phoneNumbers')}
-                            ></StyledTextInput>
-                        </StyledView>
-                        <StyledView>
-                            <StyledText style={{ color: '#176980' }} className="font-semibold mt-2">
+                            ></TextInput>
+                        </View>
+                        <View>
+                            <Text style={[styles.textGreenMain, styles.textSx, styles.fw500, styles.mt3]}>
                                 Giới tính
-                            </StyledText>
-                            <StyledView className="border-b-2 border-gray-300 border-solid">
+                            </Text>
+                            <View style={[styles.borderB]}>
                                 <Picker
                                     onValueChange={handleChangeGender}
                                     mode="dialog"
                                     selectedValue={form.gender}
-                                    style={{ padding: 0, margin: 0 }}
+                                    style={[styles.textSx]}
                                 >
                                     <Picker.Item label="Chọn giới tính của bạn"></Picker.Item>
                                     <Picker.Item label="Nam" value={'male'}></Picker.Item>
                                     <Picker.Item label="Nữ" value={'female'}></Picker.Item>
                                     <Picker.Item label="Khác" value={'unknow'}></Picker.Item>
                                 </Picker>
-                            </StyledView>
-                        </StyledView>
-                        <StyledView>
-                            <StyledText style={{ color: '#176980' }} className="font-semibold mt-2">
+                            </View>
+                        </View>
+                        <View>
+                            <Text style={[styles.textGreenMain, styles.textSx, styles.fw500, styles.mt3]}>
                                 Số CCCD/CMND
-                            </StyledText>
-                            <StyledTextInput
+                            </Text>
+                            <TextInput
                                 placeholder="Nhập số CCCD/CMND"
-                                className="p-1 border-b-2 border-gray-300 border-solid"
+                                style={[styles.borderB, styles.textSx]}
                                 onChangeText={(text) => handleChangeForm(text, 'identifyPerson')}
-                            ></StyledTextInput>
-                        </StyledView>
-                        <StyledView>
-                            <StyledText style={{ color: '#176980' }} className="font-semibold mt-2">
+                            ></TextInput>
+                        </View>
+                        <View>
+                            <Text style={[styles.textGreenMain, styles.textSx, styles.fw500, styles.mt3]}>
                                 Mật khẩu
-                            </StyledText>
-                            <StyledTextInput
+                            </Text>
+                            <TextInput
                                 placeholder="Nhập mật khẩu"
-                                className="p-1 border-b-2 border-gray-300 border-solid"
+                                style={[styles.borderB, styles.textSx]}
                                 onChangeText={(text) => handleChangeForm(text, 'password')}
                                 secureTextEntry
-                            ></StyledTextInput>
-                        </StyledView>
-                        <StyledView>
-                            <StyledText style={{ color: '#176980' }} className="font-semibold mt-2">
+                            ></TextInput>
+                        </View>
+                        <View>
+                            <Text style={[styles.textGreenMain, styles.textSx, styles.fw500, styles.mt3]}>
                                 Nhập lại mật khẩu
-                            </StyledText>
-                            <StyledTextInput
+                            </Text>
+                            <TextInput
                                 placeholder="Nhập lại mật khẩu"
-                                className="p-1 border-b-2 border-gray-300 border-solid"
+                                style={[styles.borderB, styles.textSx]}
                                 onChangeText={(text) => handleChangeForm(text, 'rePassword')}
                                 secureTextEntry
-                            ></StyledTextInput>
-                        </StyledView>
-                        <StyledView className="mt-4">
-                            <StyledTouchableOpacity onPress={handleSignUp}>
-                                <StyledText
-                                    className="text-center py-3 text-white font-bold rounded-lg"
-                                    style={{ backgroundColor: '#196371' }}
+                            ></TextInput>
+                        </View>
+                        <View style={styles.mt3}>
+                            <TouchableOpacity onPress={handleSignUp}>
+                                <Text
+                                    style={[
+                                        styles.textWhite,
+                                        styles.textLg,
+                                        styles.fw600,
+                                        styles.textCenter,
+                                        styles.p2,
+                                        styles.bgGreenMain,
+                                        styles.roundedLg,
+                                    ]}
                                 >
                                     ĐĂNG KÝ
-                                </StyledText>
-                            </StyledTouchableOpacity>
-                        </StyledView>
-                    </StyledView>
-                </StyledKeyboardAvoidingView>
-            </StyledScollView>
-        </StyledSafeAreaView>
+                                </Text>
+                            </TouchableOpacity>
+                        </View>
+                    </View>
+                </KeyboardAvoidingView>
+            </ScrollView>
+        </SafeAreaView>
     );
 }
 
-export default withExpoSnack(SignUp);
+export default SignUp;

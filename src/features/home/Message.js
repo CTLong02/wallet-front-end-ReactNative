@@ -4,6 +4,7 @@ import {
     StyledText,
     StyledTouchableWithoutFeedback,
 } from '../../general/components/ComponentsApp';
+
 function Message() {
     return (
         <StyledView>

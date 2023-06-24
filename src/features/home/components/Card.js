@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
-import { StyledView, StyledImage, StyledText } from '../../../general/components/ComponentsApp';
+import { Text, View, Image } from 'react-native';
+import styles from '../../../general/Styles/AppStyles';
 function Card({ bankname, expireDate, numberOfCCard }) {
     const [image, setImage] = useState();
     const [logo, setLogo] = useState();
@@ -8,42 +9,42 @@ function Card({ bankname, expireDate, numberOfCCard }) {
     useEffect(() => {
         if (bankname.toLowerCase() === 'vpbank') {
             setImage(
-                <StyledImage
-                    className="w-full rounded-xl"
+                <Image
+                    style={[styles.wFull, styles.roundedLg]}
                     source={require(`../../../assets/img/bg_vpbank.png`)}
-                ></StyledImage>,
+                ></Image>,
             );
             setLogo(
-                <StyledImage
-                    className="absolute top-5 left-5"
+                <Image
+                    style={{ position: 'absolute', left: 20, top: 20 }}
                     source={require('../../../assets/img/logo_vpbank.png')}
-                ></StyledImage>,
+                ></Image>,
             );
         } else if (bankname.toLowerCase() === 'acbbank') {
             setImage(
-                <StyledImage
-                    className="w-full rounded-xl"
+                <Image
+                    style={[styles.wFull, styles.roundedLg]}
                     source={require(`../../../assets/img/bg_acbbank.png`)}
-                ></StyledImage>,
+                ></Image>,
             );
             setLogo(
-                <StyledImage
-                    className="absolute top-5 left-5"
+                <Image
+                    style={{ position: 'absolute', left: 20, top: 20 }}
                     source={require('../../../assets/img/logo_acbbank.png')}
-                ></StyledImage>,
+                ></Image>,
             );
         } else if (bankname.toLowerCase() === 'techcombank') {
             setImage(
-                <StyledImage
-                    className="w-full rounded-xl"
+                <Image
+                    style={[styles.wFull, styles.roundedLg]}
                     source={require(`../../../assets/img/bg_techcombank.png`)}
-                ></StyledImage>,
+                ></Image>,
             );
             setLogo(
-                <StyledImage
-                    className="absolute top-5 left-5"
+                <Image
+                    style={{ position: 'absolute', left: 20, top: 20 }}
                     source={require('../../../assets/img/logo_techcombank.png')}
-                ></StyledImage>,
+                ></Image>,
             );
         }
     }, []);
@@ -53,20 +54,20 @@ function Card({ bankname, expireDate, numberOfCCard }) {
     }, []);
     // console.log(`../../../assets/img/${image}`);
     return (
-        <StyledView className="mt-6">
-            <StyledView className="relative">
+        <View style={styles.mt3}>
+            <View style={{ position: 'relative' }}>
                 {image ? image : <></>}
                 {logo ? logo : <></>}
-                <StyledView className="absolute bottom-5 left-5">
-                    <StyledText className="text-xl text-white font-semibold">
+                <View style={{ position: 'absolute', left: 20, bottom: 20 }}>
+                    <Text style={[styles.textLg, styles.textWhite, styles.fw500]}>
                         {stringNCard ? stringNCard : ''}
-                    </StyledText>
-                    <StyledText className="text-xl text-white font-semibold">
+                    </Text>
+                    <Text style={[styles.textLg, styles.textWhite, styles.fw500]}>
                         Expiry Date: {sDate ? sDate : ''}
-                    </StyledText>
-                </StyledView>
-            </StyledView>
-        </StyledView>
+                    </Text>
+                </View>
+            </View>
+        </View>
     );
 }
 

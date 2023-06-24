@@ -12,7 +12,7 @@ import TransferByWallet from './src/features/transferMoney/screens/TransferWithW
 import EnterMoney from './src/features/transferMoney/screens/EnterMoney';
 import Toast from 'react-native-toast-message';
 import FinishAfterTransferMoney from './src/features/transferMoney/screens/FinishAfterTransferMoney';
-
+import Invoice from './src/features/invoice/Invoice';
 const Stack = createStackNavigator();
 function App() {
     return (
@@ -37,6 +37,7 @@ function App() {
                                 component={Dashboard}
                                 options={{ headerShown: false }}
                             ></Stack.Screen>
+                            <Stack.Screen name={NavigationScreenNames.Invoice} component={Invoice}></Stack.Screen>
                         </Stack.Group>
                         <Stack.Screen name={NavigationScreenNames.CreateCard} component={CreateCard}></Stack.Screen>
                         <Stack.Group>

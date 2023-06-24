@@ -1,11 +1,16 @@
 import {
-    StyledView,
-    StyledText,
-    StyledImage,
-    StyledTouchableOpacity,
-    StyledTextInput,
-    StyledKeyboardAvoidingView,
-} from '../../../general/components/ComponentsApp';
+    Text,
+    SafeAreaView,
+    View,
+    TextInput,
+    KeyboardAvoidingView,
+    TouchableWithoutFeedback,
+    TouchableOpacity,
+    TouchableHighlight,
+    Image,
+    ScrollView,
+    Modal,
+} from 'react-native';
 import { useSelector } from 'react-redux';
 import { useNavigation } from '@react-navigation/native';
 import NavigationScreenNames from '../../../general/contants/NavigationScreenNames';
@@ -15,6 +20,9 @@ import ServiceApi from '../../../api/ServiceApi';
 import Toasts from '../../../app/components/Toasts';
 import { useDispatch } from 'react-redux';
 import { setAccountNew, setTransactionInfor } from '../../../app/appSlice';
+import { useMemo } from 'react';
+import Helper from '../../../general/helper/Helper';
+import styles from '../../../general/Styles/AppStyles';
 function EnterMoney() {
     const navigation = useNavigation();
     const dispatch = useDispatch();
@@ -54,72 +62,91 @@ function EnterMoney() {
         const res = await ServiceApi.transferMoney(newForm);
         if (res && res.result === 'success') {
             dispatch(setAccountNew(res.data));
-            dispatch(setTransactionInfor(newForm));
+            dispatch(
+                setTransactionInfor({
+                    ...newForm,
+                }),
+            );
             Toasts.showSuccess(`Bạn đã chuyển khoản ${receiverName} thành công`);
             navigation.navigate({ name: NavigationScreenNames.Finish });
         }
     };
-    // console.log(receiverName, receiverId, receiverPhone, account.id);
+    const deviceHeight = useMemo(() => Helper.deviceHeight());
     return (
-        <StyledView className="max-h-screen">
-            <StyledView className="h-full flex flex-col justify-between">
-                <StyledView>
-                    <StyledView className="bg-cyan-800 rounded-b-xl">
-                        <StyledView>
-                            <StyledTouchableOpacity
+        <View style={{ maxHeight: deviceHeight }}>
+            <View style={[styles.hFull, styles.flex, styles.flexCol, styles.justifyBetween]}>
+                <View>
+                    <View style={[styles.bgGreenMain, styles.roundedBottomXl]}>
+                        <View>
+                            <TouchableOpacity
                                 delayPressIn={300}
                                 onPress={() => navigation.navigate({ name: NavigationScreenNames.TransferByWallet })}
                             >
-                                <StyledImage source={require('../../../assets/icon/left.png')}></StyledImage>
-                            </StyledTouchableOpacity>
-                        </StyledView>
-                        <StyledView className="flex flex-row justify-center">
-                            <StyledView className="border-2 border-solid border-white rounded-full p-2">
-                                <StyledImage
-                                    className="w-28 h-28"
-                                    source={require('../../../assets/icon/user.png')}
-                                ></StyledImage>
-                            </StyledView>
-                        </StyledView>
-                        <StyledView className="mt-3 py-2">
-                            <StyledText className="text-lg text-white text-center font-semibold">
+                                <Image source={require('../../../assets/icon/left.png')}></Image>
+                            </TouchableOpacity>
+                        </View>
+                        <View style={styles.containerCenter}>
+                            <View style={[styles.border, styles.p2, styles.roundedFull]}>
+                                <Image style={styles.h28w28} source={require('../../../assets/icon/user.png')}></Image>
+                            </View>
+                        </View>
+                        <View style={[styles.mt3, styles.py3]}>
+                            <Text style={[styles.textLg, styles.textWhite, styles.fw500, styles.textCenter]}>
                                 {receiverName}
-                            </StyledText>
-                            <StyledText className="text-lg text-white text-center font-semibold">
+                            </Text>
+                            <Text style={[styles.textMd, styles.textWhite, styles.fw500, styles.textCenter]}>
                                 {receiverPhone}
-                            </StyledText>
-                        </StyledView>
-                    </StyledView>
-                    <StyledView className="mt-3 px-3">
-                        <StyledView className="border-2 border-solid border-slate-200 rounded-lg flex flex-row items-center px-3 py-2">
-                            <StyledTextInput
-                                className="flex-grow text-center text-lg"
+                            </Text>
+                        </View>
+                    </View>
+                    <View style={[styles.px3, styles.mt3]}>
+                        <View
+                            style={[
+                                styles.border,
+                                styles.flex,
+                                styles.flexRow,
+                                styles.itemsCenter,
+                                styles.roundedMd,
+                                styles.p2,
+                            ]}
+                        >
+                            <TextInput
+                                style={[styles.flexGrow, styles.textCenter, styles.textLg]}
                                 onChangeText={(text) => handleMoney(text)}
                                 value={form.money}
                                 keyboardType="number-pad"
-                            ></StyledTextInput>
-                            <StyledText className="text-lg  text-cyan-600">VND</StyledText>
-                        </StyledView>
-                        <StyledView className="border-2 border-solid border-slate-300 mt-3 rounded-lg px-3 py-2">
-                            <StyledText className="font-semibold text-lg text-cyan-800">Lời nhắn</StyledText>
-                            <StyledTextInput
-                                onChangeText={(text) => handleMessage(text)}
-                                value={form.message}
-                            ></StyledTextInput>
-                        </StyledView>
-                    </StyledView>
-                </StyledView>
-                <StyledView>
-                    <StyledKeyboardAvoidingView>
-                        <StyledTouchableOpacity onPress={handleTransferMoney}>
-                            <StyledText className="mx-12 my-4 py-2 text-center bg-cyan-800 rounded-xl shadow-lg text-white text-lg">
+                            ></TextInput>
+                            <Text style={[styles.textLg, styles.textGreenMain]}>VND</Text>
+                        </View>
+                        <View style={[styles.border, styles.roundedMd, styles.mt3, styles.p3]}>
+                            <Text style={[styles.fw500, styles.textMd, styles.textGreenMain]}>Lời nhắn :</Text>
+                            <TextInput onChangeText={(text) => handleMessage(text)} value={form.message}></TextInput>
+                        </View>
+                    </View>
+                </View>
+                <View>
+                    <KeyboardAvoidingView>
+                        <TouchableOpacity onPress={handleTransferMoney}>
+                            <Text
+                                style={[
+                                    styles.shawDowLg,
+                                    styles.p2,
+                                    styles.bgGreenMain,
+                                    styles.textCenter,
+                                    styles.textWhite,
+                                    styles.textLg,
+                                    styles.fw600,
+                                    styles.roundedLg,
+                                    { marginHorizontal: 40 },
+                                ]}
+                            >
                                 Chuyển Tiền
-                            </StyledText>
-                        </StyledTouchableOpacity>
-                    </StyledKeyboardAvoidingView>
-                </StyledView>
-            </StyledView>
-        </StyledView>
+                            </Text>
+                        </TouchableOpacity>
+                    </KeyboardAvoidingView>
+                </View>
+            </View>
+        </View>
     );
 }
 

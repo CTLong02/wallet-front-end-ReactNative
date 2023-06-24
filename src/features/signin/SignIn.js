@@ -1,5 +1,12 @@
-import { Text, SafeAreaView, View, TextInput, KeyboardAvoidingView, TouchableWithoutFeedback } from 'react-native';
-import { styled, withExpoSnack } from 'nativewind';
+import {
+    Text,
+    SafeAreaView,
+    View,
+    TextInput,
+    KeyboardAvoidingView,
+    TouchableWithoutFeedback,
+    TouchableOpacity,
+} from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import NavigationScreenNames from '../../general/contants/NavigationScreenNames';
 import { useState } from 'react';
@@ -7,15 +14,8 @@ import AuthApi from '../../api/AuthApi';
 import { toSha256 } from '../../general/utils/toSha265';
 import { useDispatch } from 'react-redux';
 import { signIn } from '../../app/appSlice';
-import { StyledTouchableOpacity } from '../../general/components/ComponentsApp';
 import Toasts from '../../app/components/Toasts';
-
-const StyledTouchableWithoutFeedback = styled(TouchableWithoutFeedback);
-const StyledSafeAreaView = styled(SafeAreaView);
-const StyledView = styled(View);
-const StyledText = styled(Text);
-const StyledTextInput = styled(TextInput);
-const StyledKeyboardAvoidingView = styled(KeyboardAvoidingView);
+import styles from '../../general/Styles/AppStyles';
 
 function SignIn() {
     const navigation = useNavigation();
@@ -50,66 +50,68 @@ function SignIn() {
     };
 
     return (
-        <StyledSafeAreaView>
-            <StyledKeyboardAvoidingView>
-                <StyledView className="flex flex-col justify-center h-full p-5" style={{ backgroundColor: '#196371' }}>
-                    <StyledView style={{ backgroundColor: '#fff' }} className="px-4 py-3 rounded-md">
-                        <StyledView>
-                            <StyledText style={{ color: '#176980' }} className="font-semibold text-base">
-                                Số điện thoại
-                            </StyledText>
-                            <StyledTextInput
+        <SafeAreaView>
+            <KeyboardAvoidingView>
+                <View style={[styles.bgGreenMain, styles.flex, styles.justifyCenter, styles.hFull, styles.p3]}>
+                    <View style={[styles.bgWhite, styles.p3, styles.roundedMd]}>
+                        <View>
+                            <Text style={[styles.textGreenMain, styles.textMd, styles.fw600]}>Số điện thoại</Text>
+                            <TextInput
                                 placeholder="Nhập số điện thoại"
-                                className="p-1 border-b-2 border-gray-300 border-solid text-lg"
+                                style={[styles.borderB, styles.textMd]}
                                 accessibilityLabel="phoneNumbers"
                                 value={form.phoneNumbers}
                                 onChangeText={(text) => handleChangeInput(text, 'phoneNumbers')}
-                            ></StyledTextInput>
-                        </StyledView>
-                        <StyledView className="mt-3">
-                            <StyledText style={{ color: '#176980' }} className="font-semibold text-base">
-                                Mật khẩu
-                            </StyledText>
-                            <StyledTextInput
+                            ></TextInput>
+                        </View>
+                        <View style={[styles.mt3]}>
+                            <Text style={[styles.textGreenMain, styles.textMd, styles.fw600]}>Mật khẩu</Text>
+                            <TextInput
                                 placeholder="Nhập mật khẩu"
                                 secureTextEntry={true}
-                                className="p-1 border-b-2 border-gray-300 border-solid text-lg"
+                                style={[styles.borderB, styles.textMd]}
                                 accessibilityLabel="password"
                                 value={form.password}
                                 onChangeText={(text) => handleChangeInput(text, 'password')}
                                 autoComplete="password"
-                            ></StyledTextInput>
-                        </StyledView>
-                        <StyledView className="mt-4">
-                            <StyledText
-                                className="font-bold text-base text-amber-500 text-right"
+                            ></TextInput>
+                        </View>
+                        <View style={styles.mt3}>
+                            <Text
+                                style={[styles.textMd, styles.textYellow, styles.textRight, styles.fw600]}
                                 onPress={handlePressForgot}
                             >
                                 Quên mật khẩu ?
-                            </StyledText>
-                        </StyledView>
-                        <StyledView className="mt-5">
-                            <StyledTouchableWithoutFeedback onPress={handleSignIn}>
-                                <StyledView className="rounded-lg py-2" style={{ backgroundColor: '#196371' }}>
-                                    <StyledText className="text-white text-xl text-center font-semibold">
+                            </Text>
+                        </View>
+                        <View style={styles.mt3}>
+                            <TouchableWithoutFeedback onPress={handleSignIn}>
+                                <View style={[styles.p3, styles.bgGreenMain, styles.roundedLg]}>
+                                    <Text style={[styles.textWhite, styles.textLg, styles.fw600, styles.textCenter]}>
                                         ĐĂNG NHẬP
-                                    </StyledText>
-                                </StyledView>
-                            </StyledTouchableWithoutFeedback>
-                        </StyledView>
-                    </StyledView>
-                    <StyledView className="flex flex-row mt-5 items-center">
-                        <StyledView>
-                            <StyledText className="text-white font-bold text-lg">Bạn chưa có Tài khoản ?</StyledText>
-                        </StyledView>
-                        <StyledTouchableOpacity delayPressIn={300} onPress={handlePressSignUp}>
-                            <StyledText className="text-amber-500 font-bold ml-3 text-lg">Đăng ký</StyledText>
-                        </StyledTouchableOpacity>
-                    </StyledView>
-                </StyledView>
-            </StyledKeyboardAvoidingView>
-        </StyledSafeAreaView>
+                                    </Text>
+                                </View>
+                            </TouchableWithoutFeedback>
+                        </View>
+                    </View>
+                    <View style={[styles.flex, styles.flexRow, styles.itemsCenter, styles.py3]}>
+                        <View>
+                            <Text style={[styles.textWhite, styles.fw500, styles.textMd, styles.mr3]}>
+                                Bạn chưa có Tài khoản ?
+                            </Text>
+                        </View>
+                        <View>
+                            <TouchableOpacity delayPressIn={300} onPress={handlePressSignUp}>
+                                <Text style={[styles.textYellow, styles.fw500, styles.textLg, styles.textRight]}>
+                                    Đăng ký
+                                </Text>
+                            </TouchableOpacity>
+                        </View>
+                    </View>
+                </View>
+            </KeyboardAvoidingView>
+        </SafeAreaView>
     );
 }
 
-export default withExpoSnack(SignIn);
+export default SignIn;
